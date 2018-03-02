@@ -19,9 +19,9 @@
    {
       printf("            <p>Searching for %s.", $term);
       $oRS = SelectSomeOrderedNodes($oConn, $whereClause, "nodeID DESC");
-      printf(" Returned %s results...</p>\n", mysql_num_rows($oRS));
+      printf(" Returned %s results...</p>\n", mysqli_num_rows($oRS));
       echo("            <ul>\n");
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
          printf("               <li><a href=\"viewnode.php?op=nid=%s;term=%s\">%s</a>, %s, %s</li>\n", $oRec["nodeID"], $term, $oRec["nodeTitle"], Counter2Date($oRec["datetime"]), $oRec["typeName"]);
       echo("            </ul>\n");
    }

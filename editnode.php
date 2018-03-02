@@ -24,19 +24,19 @@
       if (!$oRS)
       {
          include("header.php");
-         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysql_errno(), mysql_error());
+         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysqli_errno(), mysqli_error());
          Close($oConn);
          die();
          include("footer.php");
       }
-      if (mysql_num_rows($oRS) == 0)
+      if (mysqli_num_rows($oRS) == 0)
       {
          include("header.php");
          Close($oConn);
          die("<h4>User is not recognised. Check user name.</h4>");
          include("footer.php");
       }
-      $oRec = mysql_fetch_array($oRS);
+      $oRec = mysqli_fetch_array($oRS);
       $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
       if ($variables["pwd"] != $oRec["password"])
       {
@@ -61,7 +61,7 @@
          if (count($variables["nodeCategory"]) > 0);
             for ($ii=0;$ii<count($variables["nodeCategory"]); $ii++)
                InsertNodeCategory($oConn, $variables["nid"], $variables["nodeCategory"][$ii]);
-         if ($oRec = mysql_fetch_array($oRS))
+         if ($oRec = mysqli_fetch_array($oRS))
             InsertNodeEdit($oConn, $variables["nid"], AddSlashes($oRec["nodeTitle"]), AddSlashes($oRec["nodeBody"]), AddSlashes($oRec["nodePrecise"]), Now2Counter(), $uc);
          Close($oConn);
          header("Location: viewnode.php?op=nid=" . $variables["nid"] . ";tid=" . $variables["tid"]);
@@ -70,7 +70,7 @@
       {
          include("header.php");
          echo("           <h4>mySQL Error</h4>");
-         printf("             <p>Error Number: %s</p><p>Error: %s</p>", mysql_errno(), mysql_error());
+         printf("             <p>Error Number: %s</p><p>Error: %s</p>", mysqli_errno(), mysqli_error());
          include("footer.php");
       }
    }
@@ -78,7 +78,7 @@
    {
       include("header.php");
       $oRS = SelectNode($oConn, $variables["nid"]);
-      if (!$oRec = mysql_fetch_array($oRS))
+      if (!$oRec = mysqli_fetch_array($oRS))
             die("SQL Error, could not find node " . $variables["nid"] . ".");
       if ($variables["submit"] == "")
       {
@@ -129,7 +129,7 @@
       if (!$oConn = Connect())
          die("Sorry, someone fucked up. Probably me.");
       $oRS = GetNodeTypes($oConn);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
          printf("                        <option value=\"%s\" %s>%s</option>\n", $oRec["typeCode"], $oRec["typeCode"]==$variables["nodeType"]?"selected=\"selected\"":"", $oRec["typeName"]);
       echo("                     </select>\n");
       echo("                  </div>\n");
@@ -137,7 +137,7 @@
       echo("                     <label for=\"nodeCategory\">Category</label>\n");
       echo("                     <select id=\"nodeCategory\" name=\"nodeCategory[]\" multiple=\"multiple\">\n");
       $oRS = SelectNodeTypeCategories($oConn, $variables["nodeType"],$variables["nid"]);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
          printf("                        <option value=\"%s\"%s>%s</option>\n", $oRec["CategoryID"], ($oRec["NodeCategoryID"] != -1)?" selected=\"selected\"":"", $oRec["Category"]);
       echo("                     </select>\n");
       echo("                  </div>\n");
@@ -168,7 +168,7 @@
       echo("               var arrCategories;\n");
       echo("               arrCategories = Array(Array(\"\", \"\", \"-1\")");
       $oCategories = SelectCategories($oConn);
-      while ($oCategory = mysql_fetch_array($oCategories))
+      while ($oCategory = mysqli_fetch_array($oCategories))
          printf(", Array(\"%s\", \"%s\", \"%s\")", $oCategory["CategoryID"], $oCategory["Category"], $oCategory["nodeType"]);
       echo(");\n");
 ?>

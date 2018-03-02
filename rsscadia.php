@@ -26,17 +26,17 @@
       {
          $whereStr = "1=1";
          $oRS = SelectSomeOrderedNodes($oConn, "parentNode=-1 AND nodeType='j'", "datetime DESC LIMIT 0,8");
-         if (mysql_num_rows($oRS) > 0)
+         if (mysqli_num_rows($oRS) > 0)
          {
             fputs($fileRSS, "    <items>\n");
             fputs($fileRSS, "      <rdf:Seq>\n");
-            while ($oRec = mysql_fetch_array($oRS))
+            while ($oRec = mysqli_fetch_array($oRS))
                fputs($fileRSS, "        <rdf:li rdf:resource=\"http://avocadia.net/viewnode.php?op=nid=" . $oRec["nodeID"] . "\" />\n");
             fputs($fileRSS, "      </rdf:Seq>\n");
             fputs($fileRSS, "    </items>\n");
             fputs($fileRSS, "  </channel>\n");
-            mysql_data_seek($oRS, 0);
-            while ($oRec = mysql_fetch_array($oRS))
+            mysqli_data_seek($oRS, 0);
+            while ($oRec = mysqli_fetch_array($oRS))
             {
                fputs($fileRSS, "   <item rdf:about=\"http://avocadia.net/viewnode.php?op=nid=" . $oRec["nodeID"] . "\">\n");
                fputs($fileRSS, "      <title>" . htmlspecialchars($oRec["nodeTitle"]) . "</title>\n");

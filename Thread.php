@@ -119,9 +119,9 @@
 	       $theQuery = "update Threading set ThreadId=" . $aNode->thread() . ", BlockId=" . $aNode->block() . " where ThreadingId=" . $aNode->id() . ";";
 	    
 
-	    if (mysql_query($theQuery))
+	    if (mysqli_query($theQuery))
 	       if ($aNode->isNew())
-	          $aNode->setId(mysql_insert_id());
+	          $aNode->setId(mysqli_insert_id());
 	 }
       }
 
@@ -133,7 +133,7 @@
       function PopulateItems($aData)
       {
 	 $theThreadings = array();
-	 while ($theRec = mysql_fetch_array($aData))
+	 while ($theRec = mysqli_fetch_array($aData))
 	    array_push($theThreadings, $this->PopulateItem($theRec));
 	 return $theThreadings;   
       }
@@ -142,8 +142,8 @@
       {
          $theQuery = "select ThreadingId, ThreadId, BlockId from Threading where ThreadingId = " . $aThreadingId . ";";
 
-	 if ($theData = mysql_query($theQuery))
-	    if ($theRec = mysql_fetch_array($theData))
+	 if ($theData = mysqli_query($theQuery))
+	    if ($theRec = mysqli_fetch_array($theData))
 	       return $this->PopulateItem($theRec);
       }
 
@@ -151,7 +151,7 @@
       {
          $theQuery = "select ThreadingId, ThreadId, BlockId from Threading where BlockId = " . $aBlock . ";";
 
-	 if ($theData = mysql_query($theQuery))
+	 if ($theData = mysqli_query($theQuery))
 	    return $this->PopulateItems($theData);
       }
    }   

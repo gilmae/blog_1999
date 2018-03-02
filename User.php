@@ -84,8 +84,8 @@
 
       function GetUser($aUserId)
       {
-         if ($theData = mysql_query("select Counter, userName, email, url, trusted from users where counter=" . $aUserId . ";"))
-            if ($theRec = mysql_fetch_array($theData))
+         if ($theData = mysqli_query("select Counter, userName, email, url, trusted from users where counter=" . $aUserId . ";"))
+            if ($theRec = mysqli_fetch_array($theData))
                return $this->PopulateItem($theRec);
       }
 
@@ -94,13 +94,13 @@
          
 	 $theQuery = "select Counter, userName, email, url, trusted from users where userName = '" . $aName . "' and email = '" . $anEmail . "';";
 
-	 if ($theData = mysql_query($theQuery))
+	 if ($theData = mysqli_query($theQuery))
 	    return $this->PopulateItems($theData);
       }	    
       function GetUsersByEmail($anEmail)
       {
          $theQuery = "select Counter, userName, email, url, trusted from users where email='" . $anEmail . ";";
-	 if ($theData = mysql_query($theQuery))
+	 if ($theData = mysqli_query($theQuery))
 	    return $this->PopulateItems($theData);
       }
       
@@ -112,7 +112,7 @@
       function PopulateItems($aData)
       {
          $theUsers = array();
-	 while ($theRec = mysql_fetch_array($aData))
+	 while ($theRec = mysqli_fetch_array($aData))
 	    array_push($theUsers, $this->PopulateItem($theRec));
 	 return $theUsers;   
       }
@@ -127,9 +127,9 @@
                $sql = "update users set userName = '" . $aUser->name() . "', email = '" . $aUser->email() . "', url='" . $aUser->url() . "', trusted = " . $aUser->trusted() . "';";         
             
        
-            if (mysql_query($sql))
+            if (mysqli_query($sql))
                if ($aUser->isNew())
-   	          $aUser->setId(mysql_insert_id());
+   	          $aUser->setId(mysqli_insert_id());
 	}	  
       }
    }

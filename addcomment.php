@@ -16,7 +16,7 @@
       $variables["pid"] = isset($HTTP_POST_VARS["pid"])?$HTTP_POST_VARS["pid"]:-1;
       $variables["nodeBody"] = isset($HTTP_POST_VARS["nodeBody"])?$HTTP_POST_VARS["nodeBody"]:"";
       $oRS = SelectNode($oConn, $variables["pid"]);
-      if ($oRec = mysql_fetch_array($oRS)) {
+      if ($oRec = mysqli_fetch_array($oRS)) {
          if ($oRec["datetime"] < strtotime("-3 months")) {
 	    header("Status: 410 No Further Comments");
 	    die();
@@ -27,11 +27,11 @@
       else
       {
           $oUserRS = SelectUser($oConn, $variables["name"]);
-          if (mysql_num_rows($oUserRS) == 0)
+          if (mysqli_num_rows($oUserRS) == 0)
              $variables["counter"] = InsertUser($oConn, $variables["name"], $variables["name"], $variables["email"], $variables["url"], 0);
           else
           {
-             $oUser = mysql_fetch_array($oUserRS);
+             $oUser = mysqli_fetch_array($oUserRS);
              $variables["counter"] = $oUser["counter"];
              UpdateUser($oConn, $variables["name"], $variables["name"], $variables["email"], $variables["url"], 0, $variables["counter"]);
           }
@@ -46,7 +46,7 @@
       $variables["nid"] = AddNode($oConn, MakeStringSafe($variables["nodeTitle"]), MakeStringSafe($variables["nodeBody"]), MakeStringSafe($variables["nodeBody"]), 'c', $variables["pid"], $variables["counter"], 1);
       $BlockID = $variables["pid"];
       $oIsBlockThreaded = FindParentInThreading($oConn, $variables["pid"]);
-      if (mysql_num_rows($oIsBlockThreaded) < 1)
+      if (mysqli_num_rows($oIsBlockThreaded) < 1)
       {
          $parentID = $variables["pid"];
          AddToThreading($oConn, $BlockID, $parentID);
@@ -54,8 +54,8 @@
          while ($parentID != -1)
          {
             $sql = "SELECT parentNode FROM nodes where nodeID = $parentID";
-            $oParentRS = mysql_query($sql, $oConn);
-            if ($oParentRec = mysql_fetch_array($oParentRS))
+            $oParentRS = mysqli_query($sql, $oConn);
+            if ($oParentRec = mysqli_fetch_array($oParentRS))
                $parentID = $oParentRec["parentNode"];
             else
                $parentID = -1;
@@ -65,7 +65,7 @@
       if ($variables["pid"] != -1)
       {
          $oBranchRS = SelectThreadRoot($oConn, $variables["pid"]);
-         if ($oBranch = mysql_fetch_array($oBranchRS))
+         if ($oBranch = mysqli_fetch_array($oBranchRS))
          {
             if ($oBranch["FirstChild"] == -1)
                SetThreadFirstChild($oConn, $variables["pid"], $variables["nid"]);
@@ -78,7 +78,7 @@
       }
       include("header.php");
       $oNodeRS = SelectNode($oConn, $variables["nid"]);
-      if ($oNode = mysql_fetch_array($oNodeRS))
+      if ($oNode = mysqli_fetch_array($oNodeRS))
          AltDisplayNode($oNode, 0);
       include("footer.php");
       die();
@@ -104,7 +104,7 @@
    include("header.php");
    $oNodeRS = SelectNode($oConn, $variables["pid"]);
 
-   if (!$oNode = mysql_fetch_array($oNodeRS))
+   if (!$oNode = mysqli_fetch_array($oNodeRS))
       die("Could not attach comment because node " . $variables["pid"] . " does not exist.");
    AltDisplayNode($oNode, 0, $variables["pid"], 0, 1, 1, 1, 0);
 

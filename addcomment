@@ -73,7 +73,7 @@
       /*if ($variables["pid"] != -1)
       {
          $oBranchRS = SelectThreadRoot($oConn, $variables["pid"]);
-         if ($oBranch = mysql_fetch_array($oBranchRS))
+         if ($oBranch = mysqli_fetch_array($oBranchRS))
          {
             if ($oBranch["FirstChild"] == -1)
                SetThreadFirstChild($oConn, $variables["pid"], $variables["nid"]);
@@ -86,7 +86,7 @@
       }*/
       include("header.php");
       $oNodeRS = SelectNode($oConn, $variables["nid"]);
-      if ($oNode = mysql_fetch_array($oNodeRS))
+      if ($oNode = mysqli_fetch_array($oNodeRS))
          AltDisplayNode($oNode, 0);
       include("footer.php");
       die();
@@ -102,7 +102,7 @@
    include("header.php");
    $oNodeRS = SelectNode($oConn, $variables["pid"]);
 
-   if (!$oNode = mysql_fetch_array($oNodeRS))
+   if (!$oNode = mysqli_fetch_array($oNodeRS))
       die("Could not attach comment because node " . $variables["pid"] . " does not exist.");
 
    if ($oNode["datetime"] < strtotime("-3 months"))

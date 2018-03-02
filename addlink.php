@@ -26,19 +26,19 @@
       if (!$oRS)
       {
          include("header.php");
-         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysql_errno(), mysql_error());
+         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysqli_errno(), mysqli_error());
          Close($oConn);
          die();
          include("footer.php");
       }
-      if (mysql_num_rows($oRS) == 0)
+      if (mysqli_num_rows($oRS) == 0)
       {
          include("header.php");
          Close($oConn);
          die("<h4>User is not recognised. Check user name.</h4>");
          include("footer.php");
       }
-      $oRec = mysql_fetch_array($oRS);
+      $oRec = mysqli_fetch_array($oRS);
       if ($variables["pwd"] != $oRec["password"])
       {
          include("header.php");

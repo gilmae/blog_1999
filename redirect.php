@@ -7,7 +7,7 @@
       die("Sorry, someone fucked up. Probably me.");
    }
    $oRS = SelectNode($oConn, $nid);
-   if ($oRec = mysql_fetch_array($oRS))
+   if ($oRec = mysqli_fetch_array($oRS))
       if ($type == "www")
       {
          Close($oConn);

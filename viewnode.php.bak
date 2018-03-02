@@ -24,7 +24,7 @@
       die("Sorry, someone fucked up. Probably me.");
    }
    $oNode = SelectNode($oConn, $nid);
-   if (!$oNodeRec = mysql_fetch_array($oNode))
+   if (!$oNodeRec = mysqli_fetch_array($oNode))
       die("Could not find node $nid");
    else
    {
@@ -32,7 +32,7 @@
       $nodes[$oNodeRec["nodeID"]] = $oNodeRec;
       $nodeIndex[$oNodeRec["parentNode"]][0] = $oNodeRec["nodeID"];
       $oRS = SelectThreading($oConn, $nid);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
       {
          $nodes[$oRec["nodeID"]] = $oRec;
          $i = isset($nodeIndex[$oRec["parentNode"]])?count($nodeIndex[$oRec["parentNode"]]):0;
@@ -50,10 +50,10 @@
       }
       ShowNodes(0, $nid);
       $oPingsRS = SelectPingbacks($oConn, $variables["nid"]);
-      if ($oPingsRS && mysql_num_rows($oPingsRS) > 0)
+      if ($oPingsRS && mysqli_num_rows($oPingsRS) > 0)
       {
          echo("            <a name=\"pings\"></a><h3>Pingbacks</h3>\n");
-         while ($oPing = mysql_fetch_array($oPingsRS))
+         while ($oPing = mysqli_fetch_array($oPingsRS))
             printf("            <p><a href=\"%s\" title=\"%s\">%s</a></p>\n", $oPing["Source"], $oPing["Title"], $oPing["Title"]);
       }
    }
@@ -90,7 +90,7 @@
       global $oConn;
 
       $oBranchRS = SelectNode($xConn, $xNode["parentNode"]);
-      if ($oBranch = mysql_fetch_array($oBranchRS))
+      if ($oBranch = mysqli_fetch_array($oBranchRS))
          if ($oBranch["FirstChild"] != $xNode["nodeID"])
          {
             array_push($nav, array("first", "viewnode.php?op=nid=" . $oBranch["FirstChild"]));

@@ -21,15 +21,15 @@
             </li>
             <li>
 <?
-   if (isset($oCategoryRS) && mysql_num_rows($oCategoryRS) > 0)
+   if (isset($oCategoryRS) && mysqli_num_rows($oCategoryRS) > 0)
    {
       echo("            <li>\n");
       echo("               <h4>topics</h4>\n");
-      mysql_data_seek($oCategoryRS, 0);
-      if (mysql_num_rows($oCategoryRS) > 0)
+      mysqli_data_seek($oCategoryRS, 0);
+      if (mysqli_num_rows($oCategoryRS) > 0)
       {
          echo("               <ul>\n");
-         while ($oCategoryRec = mysql_fetch_array($oCategoryRS))
+         while ($oCategoryRec = mysqli_fetch_array($oCategoryRS))
             printf("                  <li><a href=\"branch.php?op=categoryID=%s\" title=\"Nodes about %s\">%s</a></li>\n", $oCategoryRec["CategoryID"], $oCategoryRec["Category"], $oCategoryRec["Category"]);
          echo("               </ul>\n");
       }
@@ -65,9 +65,9 @@
       $sNodes = "(";
       $ii=1;
       $aTopLevelNodes = Array();
-      $iNumRows = mysql_num_rows($oTopLevelNodes);
-      if (mysql_num_rows($oTopLevelNodes) > 0)
-         while ($oTopLevelNode = mysql_fetch_array($oTopLevelNodes))
+      $iNumRows = mysqli_num_rows($oTopLevelNodes);
+      if (mysqli_num_rows($oTopLevelNodes) > 0)
+         while ($oTopLevelNode = mysqli_fetch_array($oTopLevelNodes))
          {
             if ($ii++ < $iNumRows)
                $sNodes = $sNodes . $oTopLevelNode["nodeID"] . ", ";
@@ -79,10 +79,10 @@
       if ($sNodes != "()")
       {
          $oUpdateTopLevelThreads = SelectUpdatedThreads($oConn, $sNodes, $variables["dateLastHere"]);
-         if (mysql_num_rows($oUpdateTopLevelThreads) > 0)
+         if (mysqli_num_rows($oUpdateTopLevelThreads) > 0)
          {
             echo("            <li>\n               <h5>updated threads</h5>\n               <ul>\n");
-            while ($oUpdateTopLevelThread = mysql_fetch_array($oUpdateTopLevelThreads))
+            while ($oUpdateTopLevelThread = mysqli_fetch_array($oUpdateTopLevelThreads))
                printf("                  <li><a href=\"viewnode.php?op=nid=%s\">%s (%s)</a></li>\n", $oUpdateTopLevelThread["ThreadID"], $aTopLevelNodes[$oUpdateTopLevelThread["ThreadID"]], $oUpdateTopLevelThread["new"]);
             echo("               <ul>\n            </li>\n");
          }

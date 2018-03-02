@@ -12,7 +12,7 @@
    $oRS = SelectNodeTypeCategories($oConn, 'f', -1);
    $pageTitle = "Fiction";
    include("header.php");
-   while ($oRec = mysql_fetch_array($oRS))
+   while ($oRec = mysqli_fetch_array($oRS))
    {
       printf("            <div class=\"node\" style=\"width:98%%;margin-left:1%%\">\n");
       printf("               <div class=\"nodeHeader\" >\n");
@@ -24,7 +24,7 @@
       $orderStr = "n.datetime DESC LIMIT 0,1";
       $oNodesRS = SelectSomeNodeCategoryNodes($oConn, $whereStr, $orderStr);
       echo("               <div class=\"nodeFooterLeft\">");
-      if ($oNode = mysql_fetch_array($oNodesRS))
+      if ($oNode = mysqli_fetch_array($oNodesRS))
          printf("                  <a href=\"viewnode.php?op=nid=%s;tid=%s\">Latest Episode</a>\n", $oNode["nodeID"], $oNode["threadID"]);
       else
          printf("                  No episodes posted.\n");
@@ -35,10 +35,10 @@
 
 
 
-   /*if ($oRecc = mysql_fetch_array($oRS))
+   /*if ($oRecc = mysqli_fetch_array($oRS))
       if ($oRecc["public"])
          DisplayNode($oRecc, 0, -1, 0, 0, 0, 0, 1);
-   while ($oRecc = mysql_fetch_array($oRS))
+   while ($oRecc = mysqli_fetch_array($oRS))
       if ($oRecc["public"])
          if (CounterIsToday($oRecc["datetime"]))
             DisplayNode($oRecc, 0, -1, 0, 0, 0, 0, 1);

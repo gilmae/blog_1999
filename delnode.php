@@ -14,19 +14,19 @@
       if (!$oRS)
       {
          include("header.php");
-         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysql_errno(), mysql_error());
+         printf("             <h4>mySQL Error</h4>Error Number: %s</p><p>Error: %s</p>", mysqli_errno(), mysqli_error());
          Close($oConn);
          die();
          include("footer.php");
       }
-      if (mysql_num_rows($oRS) == 0)
+      if (mysqli_num_rows($oRS) == 0)
       {
          include("header.php");
          Close($oConn);
          die("<h4>User is not recognised.</h4>");
          include("footer.php");
       }
-      $oRec = mysql_fetch_array($oRS);
+      $oRec = mysqli_fetch_array($oRS);
       $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
       if ($variables["pwd"] != $oRec["password"])
       {
@@ -42,11 +42,11 @@
          die("<h4>User is not an admin.</h4>");
          include("footer.php");
       }
-      $oNode = mysql_fetch_array(SelectNode($oConn, $variables["nid"]));
+      $oNode = mysqli_fetch_array(SelectNode($oConn, $variables["nid"]));
       $nodes[$oNode["nodeID"]] = $oNode;
       $nodeIndex[$oNode["parentNode"]][0] = $oNode["nodeID"];
       $oNodeRS = SelectThreading($oConn, $variables["nid"]);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
       {
          $nodes[$oRec["nodeID"]] = $oRec;
          $i = isset($nodeIndex[$oRec["parentNode"]])?count($nodeIndex[$oRec["parentNode"]]):0;
@@ -57,7 +57,7 @@
       DeleteNodeCategories($oConn, $variables["nid"]);
       if ($oNode)
       {
-         $oBranch = mysql_fetch_array(SelectThreadRoot($oConn, $oNode["parentNode"]));
+         $oBranch = mysqli_fetch_array(SelectThreadRoot($oConn, $oNode["parentNode"]));
          if ($oBranch)
          {
             if ($oBranch["FirstChild"] == $variables["nid"])
@@ -82,7 +82,7 @@
       $variables["nid"] = isset($variables["nid"])?$variables["nid"]:-1;
       include("header.php");
       $oRS = SelectNode($oConn, $variables["nid"]);
-      if ($oRec = mysql_fetch_array($oRS));
+      if ($oRec = mysqli_fetch_array($oRS));
       {
          echo("            <form action=\"delnode.php\" method=\"post\">\n");
          printf("               <input type=\"hidden\" value=\"%s\" name=\"nid\">\n", $variables["nid"]);

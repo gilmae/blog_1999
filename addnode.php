@@ -24,15 +24,15 @@
          if ($variables["pid"] != -1)
          {
             $oRS = SelectNode($oConn, $variables["pid"]);
-            if (mysql_num_rows($oRS) == 0)
+            if (mysqli_num_rows($oRS) == 0)
                die("Could not attach node because parent node " . $variables["pid"] . " does not exist.");
          }
          $variables["nid"] = AddNode($oConn, $variables["nodeTitle"], $variables["nodeBody"], $variables["nodePrecise"], $variables["nodeType"], $variables["pid"], $variables["counter"], $variables["public"]);
          if ($variables["nid"] < 1)
-            die("             <h4>mySQL Error</h4>Error Number: " . mysql_errno() . "</p><p>Error: " . mysql_error() . "</p>");
+            die("             <h4>mySQL Error</h4>Error Number: " . mysqli_errno() . "</p><p>Error: " . mysqli_error() . "</p>");
          $BlockID = $variables["pid"];
          $oIsBlockThreaded = FindParentInThreading($oConn, $variables["pid"]);
-         if (mysql_num_rows($oIsBlockThreaded) < 1)
+         if (mysqli_num_rows($oIsBlockThreaded) < 1)
          {
             $parentID = $variables["pid"];
             AddToThreading($oConn, $BlockID, $parentID);
@@ -40,8 +40,8 @@
             while ($parentID != -1)
             {
                $sql = "SELECT parentNode FROM nodes where nodeID = $parentID";
-               $oParentRS = mysql_query($sql, $oConn);
-               if ($oParentRec = mysql_fetch_array($oParentRS))
+               $oParentRS = mysqli_query($sql, $oConn);
+               if ($oParentRec = mysqli_fetch_array($oParentRS))
                   $parentID = $oParentRec["parentNode"];
                else
                   $parentID = -1;
@@ -54,7 +54,7 @@
          if ($variables["pid"] != -1)
          {
             $oBranchRS = SelectThreadRoot($oConn, $variables["pid"]);
-            if ($oBranch = mysql_fetch_array($oBranchRS))
+            if ($oBranch = mysqli_fetch_array($oBranchRS))
             {
                if ($oBranch["FirstChild"] == -1)
                   SetThreadFirstChild($oConn, $variables["pid"], $variables["nid"]);
@@ -67,7 +67,7 @@
          }
          $oTypeRS = SelectNodeType($oConn, $variables["nodeType"]);
          RSScadia();
-         //if ($oTypeRec = mysql_fetch_array($oTypeRS))
+         //if ($oTypeRec = mysqli_fetch_array($oTypeRS))
          //{
             //if ($bLive && ($oTypeRec["PingbackEnabled"] == 1))
             //{
@@ -86,7 +86,7 @@
          switch ($variables["counter"])
          {
             case -99:
-               printf("<h4>mySQL Error</h4><p>Error Number: %s</p><p>Error Description: %s</p>\n", mysql_errno(), mysql_error());
+               printf("<h4>mySQL Error</h4><p>Error Number: %s</p><p>Error Description: %s</p>\n", mysqli_errno(), mysqli_error());
                break;
             case -3:
                printf("<h4>User is not an Administrator.</h4>");
@@ -153,7 +153,7 @@
       if (!$oConn = Connect())
          die("Sorry, someone fucked up. Probably me.");
       $oRS = GetNodeTypes($oConn);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
          printf("                        <option value=\"%s\" %s>%s</option>\n", $oRec["typeCode"], $oRec["typeCode"]==$variables["nodeType"]?"selected=\"selected\"":"", $oRec["typeName"]);
       echo("                     </select>\n");
       echo("                  </div>\n");
@@ -193,7 +193,7 @@
       echo("               var arrCategories;\n");
       echo("               arrCategories = Array(Array(\"\", \"\", \"-1\")");
       $oCategories = SelectCategories($oConn);
-      while ($oCategory = mysql_fetch_array($oCategories))
+      while ($oCategory = mysqli_fetch_array($oCategories))
          printf(", Array(\"%s\", \"%s\", \"%s\")", $oCategory["CategoryID"], $oCategory["Category"], $oCategory["nodeType"]);
       echo(");\n");
 ?>

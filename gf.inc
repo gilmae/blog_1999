@@ -49,11 +49,11 @@
       echo("               </p>\n");
       printf("               %s\n", MLP($oRecc["nodeBody"], $xTerm));
       $oCats = SelectNodeCategories($oConn, $oRecc["nodeID"]);
-      if (mysql_num_rows($oCats) > 0)
+      if (mysqli_num_rows($oCats) > 0)
       {
          $catCount = 0;
          echo("               <p>\n");
-         while ($oCat = mysql_fetch_array($oCats))
+         while ($oCat = mysqli_fetch_array($oCats))
             printf("                  %s", $oCat["Category"]);
          echo("               </p>\n"); 
       }   
@@ -212,7 +212,7 @@
       }
 
       $oRS = SelectSmartLinks($oConn);
-      while ($oRec = mysql_fetch_array($oRS))
+      while ($oRec = mysqli_fetch_array($oRS))
       {
           array_push($search, $oRec["SmartLinkKey"]);
           array_push($replaces, $oRec["SmartLink"]);
@@ -258,7 +258,7 @@
          return -1;
       }
       $oUserRS = SelectUser($oConn, $xUID);
-      if (!$oUser = mysql_fetch_array($oUserRS))
+      if (!$oUser = mysqli_fetch_array($oUserRS))
          return -1;
       if ($xPWD != $oUser["password"])
       {
@@ -307,17 +307,17 @@
          {
             $whereStr = "1=1";
             $oRS = SelectSomeOrderedNodes($oConn, "parentNode=-1 AND nodeType='j'", "datetime DESC LIMIT 0,8");
-            if (mysql_num_rows($oRS) > 0)
+            if (mysqli_num_rows($oRS) > 0)
             {
                fputs($fileRSS, "    <items>\n");
                fputs($fileRSS, "      <rdf:Seq>\n");
-               while ($oRec = mysql_fetch_array($oRS))
+               while ($oRec = mysqli_fetch_array($oRS))
                   fputs($fileRSS, "        <rdf:li rdf:resource=\"http://avocadia.net/viewnode.php?op=nid=" . $oRec["nodeID"] . "\" />\n");
                fputs($fileRSS, "      </rdf:Seq>\n");
                fputs($fileRSS, "    </items>\n");
                fputs($fileRSS, "  </channel>\n");
-               mysql_data_seek($oRS, 0);
-               while ($oRec = mysql_fetch_array($oRS))
+               mysqli_data_seek($oRS, 0);
+               while ($oRec = mysqli_fetch_array($oRS))
                {
                   fputs($fileRSS, "   <item rdf:about=\"http://avocadia.net/viewnode.php?op=nid=" . $oRec["nodeID"] . "\">\n");
                   fputs($fileRSS, "      <title>" . htmlspecialchars($oRec["nodeTitle"]) . "</title>\n");

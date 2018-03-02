@@ -15,7 +15,7 @@
    $oRS = SelectSomeOrderedNodes($oConn, "parentNode = " . $variables["pid"], "datetime DESC LIMIT $start,10");
    echo("                 <table class=\"adminTable\">\n");
    printf("                    <tr><td colspan=\"4\">[+] <a class = \"nav\" href=\"addnode.php?op=pid=%s\">Add a Node</a></td></tr>\n", $variables["pid"]);
-   while ($oRec = mysql_fetch_array($oRS))
+   while ($oRec = mysqli_fetch_array($oRS))
    {
          echo("                    <tr>\n");
          printf("                       <td style=\"width:70%%;text-align:left;\">%s - <a href=\"viewnode.php?op=nid=%s;tid=%s\">%s</a> ( %s )</td>\n", Counter2Date($oRec["datetime"]), $oRec["nodeID"], $oRec["threadID"], $oRec["nodeTitle"], $oRec["nodeType"]);
@@ -34,7 +34,7 @@
    echo("                    <tr>\n");
    echo("                         <td style=\"width:70%\">&nbsp;</td>\n");
    printf("                       <td style=\"width:10%%;text-align:center;\">%s</td>\n", $variables["page"]>1?"<a href=\"nodeadmin.php?op=pid=" . $variables["pid"] . ";page=" . ($variables["page"] - 1) . "\" title=\"Previous 10 nodes\">prev</a>":"");
-   printf("                       <td style=\"width:10%%;text-align:center;\">%s</td>\n", mysql_num_rows($oRS) == 10?"<a href=\"nodeadmin.php?op=pid=" . $variables["pid"] . ";page=" . ($variables["page"] + 1) . "\" title=\"Next 10 nodes\">next</a>":"");
+   printf("                       <td style=\"width:10%%;text-align:center;\">%s</td>\n", mysqli_num_rows($oRS) == 10?"<a href=\"nodeadmin.php?op=pid=" . $variables["pid"] . ";page=" . ($variables["page"] + 1) . "\" title=\"Next 10 nodes\">next</a>":"");
    echo("                         <td style=\"width:10%\">&nbsp;</td>\n");
    echo("                    </tr>\n");
    echo("                 </table>\n");

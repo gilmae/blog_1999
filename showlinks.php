@@ -7,11 +7,11 @@
    }
    $oLinksRS = SelectLinks($oConn);
    include("header.php");
-   if (mysql_num_rows($oLinksRS) > 0)
+   if (mysqli_num_rows($oLinksRS) > 0)
    {
       echo("            <table class=\"adminTable\" summary=\"Table of links to external sites and links for their administration\" style=\"width:100%;padding:0px;margin:0px;\">\n");
       echo("               <tr><td colspan=\"3\"><a href=\"addlink.php\" title=\"Add a link\">Add Link</a></td></tr>\n");
-      while ($oLink = mysql_fetch_array($oLinksRS))
+      while ($oLink = mysqli_fetch_array($oLinksRS))
       {
          echo("               <tr>\n");
          printf("                  <td style=\"width:80%%;text-align:left;\"><a href=\"%s\" title=\"%s\">%s</a></td>\n", $oLink["Link"], $oLink["LinkDescription"], $oLink["LinkName"]);

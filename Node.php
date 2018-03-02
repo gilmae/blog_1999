@@ -189,8 +189,8 @@
       {
          $sql = "select nodeID, nodeTitle, nodeBody, nodePrecise, parentNode, childNodes, postedBy, datetime , public, nextSibling, prevSibling, FirstChild, LastChild from nodes where nodeID=" . $aNodeID . ";";
 	 
-	 if ($myData = mysql_query($sql))
-            if ($myRec = mysql_fetch_array($myData))
+	 if ($myData = mysqli_query($sql))
+            if ($myRec = mysqli_fetch_array($myData))
                return $this->PopulateItem($myRec);
 	 
       }
@@ -201,9 +201,9 @@
          else
 	    $theQuery = "update nodes set nodeTitle='" . str_replace("'", "&#039;", $aNode->title()) . "', nodeBody='" . str_replace("'", "&#039;", $aNode->body()) . "', nodePrecise='" . str_replace("'", "&#039;", $aNode->precise()) . "', datetime='" . $aNode->dateIssued() . "', nodeType='" . $aNode->type() . "',  postedBy=" . $aNode->authorId() . ", public=" . $aNode->public() . ", parentNode=" . $aNode->parentId() . ", childNodes=" . $aNode->childCount() . ", nextSibling=" . $aNode->nextSiblingId() . ", prevSibling=" . $aNode->prevSiblingId() . ", FirstChild=" . $aNode->firstChild() . ", LastChild=" . $aNode->lastChild() . "  where nodeId=" . $aNode->id() . ";";
 	    
-	 if (mysql_query($theQuery))
+	 if (mysqli_query($theQuery))
    	    if ($aNode->isNew())
-	       $aNode->setId( mysql_insert_id());
+	       $aNode->setId( mysqli_insert_id());
       }
    }
 ?>

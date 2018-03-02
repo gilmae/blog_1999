@@ -41,7 +41,7 @@
    $oRS = SelectSomeOrderedNodes($oConn, $whereStr, "datetime DESC LIMIT 0,$limit");
    include("header.php");
    $sDay = "";
-   while ($oRecc = mysql_fetch_array($oRS))
+   while ($oRecc = mysqli_fetch_array($oRS))
    {
       if ($sDay != Counter2Day($oRecc["datetime"]))
       {
