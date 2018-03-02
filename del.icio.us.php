@@ -61,7 +61,7 @@ if (file_exists($theLocalCopy))
 {
    $xml_parser = xml_parser_create();
    $rss_parser = new RSSParser();
-   xml_set_object($xml_parser,&$rss_parser);
+   xml_set_object($xml_parser,$rss_parser);
    xml_set_element_handler($xml_parser, "startElement", "endElement");
    xml_set_character_data_handler($xml_parser, "characterData");
    echo("<ul class=\"links delicious\">\n");
