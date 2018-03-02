@@ -1,0 +1,5 @@
+*.sql
+core
+dbc.inc
+*.key
+.DS_Store

@@ -1,0 +1,30 @@
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://avocadia.net/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.avocadia.net/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://randomknits.net/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.randomknits.net/.*$ [NC]
+RewriteRule .*.(gif|GIF|jpg|JPG|PNG|png)$ - [F]
+
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?avocadia.net [NC]
+RewriteRule (viewnode.php?op=nid=7381)$ - [NC,F,L]
+
+
+order allow,deny
+deny from 12.163.72.13
+deny from 195.24.72.116
+deny from 219.150.118.16
+deny from webshield.sulanet.net
+deny from highprofitclub.com
+deny from doobu.net
+deny from fearcrow.com
+deny from vpshs.com
+deny from ca-america.com
+deny from rohkalby.com
+deny from buy-2005-top.com
+allow from all
+
+Redirect 302 /randomknits/ http://www.randomknits.net/
+Redirect permanent /journal.xml http://blog.avocadia.net/journal.xml

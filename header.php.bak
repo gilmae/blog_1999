@@ -1,0 +1,61 @@
+<?
+   include_once("gf.inc");
+   include("class.RSS.php");
+   switch ($category)
+   {
+      case "n":
+      case "nanowrimo":
+         $pageBanner = "NaNoWriMo";
+         break;
+      case "f": // fallthru
+      case "fiction":
+         $pageBanner = "Fiction";
+         break;
+      case "r": //fall thru
+      case "random":
+         $pageBanner = "Attacks of Random";
+         break;
+      case "t": // fallthru
+      case "tyranny":
+         $pageBanner = "Tyranny of the Minority";
+         break;
+      case "journal":
+         $pageBanner = "Journal";
+   }
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head id="head">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="MSSmartTagsPreventParsing" content="true" />
+      <meta name="ICBM" content="-52.867, 152.2">
+      <meta name="DC.title" content="Avocadia">
+      <title>Avocadia<? if (isset($pageTitle)) echo(": $pageTitle"); ?></title>
+      <script type="text/javascript" src="library/script/avocadia.js"></script>
+      <style type="text/css" media="screen">
+         @import "library/css/avocadia.css";
+         @import "library/css/newnodes.css";
+      </style>
+      <link title="RSS" rel="alternate" type="application/rss+xml" href="journal.xml" />
+      <link rel="start" title="home" type="text/html" href="index.php"/>
+      <link rel="made" title="about me" type="text/html" href="viewnode.php?op=nid=947"/>
+      <link rel="copyright" title="copyright" type="text/html" href="behindTheHTML.php"/>
+            <link rel="Contact" title="gilmaevski@mail.ru" type="text/html" href="mailto:gilmaevski@mail.ru"/>
+      <? if (isset($links)){ echo($links . "\n");} else{ echo("\n"); } ?>
+   </head>
+   <body id="body">
+      <div id="pageBanner">
+         <h1 id="siteName">Avocadia</h1><p>: <? echo($pageBanner)?></p>
+         <span id="pageMetaLinks">
+            <a href="#content" class="ahem" accesskey="2" title="Go directly to content">CONTENT</a><span class="ahem">&nbsp;|&nbsp;</span>
+            <a href="index.php" accesskey="1" title="Return to front page">TOP</a>&nbsp;|&nbsp;
+            <a href="behindTheHTML.php" title="Meta information about the site">ABOUT</a>&nbsp;|&nbsp;
+            <a href="viewnode.php?op=nid=947" title="How to contact the author">CONTACT</a>&nbsp;|&nbsp;
+            <a href="journal.xml" title="RSS feed of the weblog">RSS</a>
+         </span>
+
+     </div>
+      <p class="ahem">You are viewing this site in its most basic form. That is, without any of styling that would normally be here. It is because your browser does not support a web standard called CSS. If you are able, you should upgrade your browser to something that does support web standards such as CSS and XHTML. You can find newer versions of many browsers at <a href="http://webstandards.org/upgrade">Web Standard's upgrade page.</a></p>
+      <div id="content">
+         <br class="ahem" />
+         <h2 id="pageName"><?echo($pageTitle);?></h2>

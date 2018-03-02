@@ -1,0 +1,24 @@
+<html>
+<head><title>Hello</title></head>
+<body>
+<SCRIPT LANGUAGE="JavaScript">
+
+   addNetscapePanel();
+   function addNetscapePanel() {
+      if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function"))
+      {
+         window.sidebar.addPanel ("Avocadia",
+         "http://avocadia.net/library/sidebar.htm","");
+      }
+      else
+      {
+         var rv = window.confirm ("This page is enhanced for use with Netscape 6.  " + "Would you like to upgrade now?");
+         if (rv)
+            document.location.href = "http://home.netscape.com/download/index.html";
+      }
+   }
+//-->
+
+</SCRIPT>
+</body>
+</html>

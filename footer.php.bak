@@ -1,0 +1,108 @@
+<?
+   if (!$oConn = Connect())
+   {
+      die("Sorry, someone fucked up. Probably me.");
+   }
+?>
+      <hr class="ahem" />
+      </div>
+      <div id="side">
+         <h3 class="ahem">Links and Other Things</h3>
+         <ul>
+            <li><a href="http://avocadia.net/randomknits" title="Random Knits">D's Random Knits</a></li>
+            <li><a href="http://avocadia.net/gallery/albums.php" title"Looks like you need some caffeine">Image Gallery</a></li>
+            <li>
+               <h4><label for="term" accesskey="4">site search</label></h4>
+               <form method="post" action="search.php">
+                  <div id="searchConsole">
+                     <input type="text" id="term" name="term"  />&nbsp;<input type="submit" value="search" />
+                  </div>
+               </form>
+            </li>
+            <li>
+<?
+   if (isset($oCategoryRS) && mysql_num_rows($oCategoryRS) > 0)
+   {
+      echo("            <li>\n");
+      echo("               <h4>topics</h4>\n");
+      mysql_data_seek($oCategoryRS, 0);
+      if (mysql_num_rows($oCategoryRS) > 0)
+      {
+         echo("               <ul>\n");
+         while ($oCategoryRec = mysql_fetch_array($oCategoryRS))
+            printf("                  <li><a href=\"branch.php?op=categoryID=%s\" title=\"Nodes about %s\">%s</a></li>\n", $oCategoryRec["CategoryID"], $oCategoryRec["Category"], $oCategoryRec["Category"]);
+         echo("               </ul>\n");
+      }
+      echo("            </li>\n");
+      echo("            <li><br /></li>\n");
+   }
+?>
+            <li>
+               <h4>stuff i read</h4>
+<?
+/*   $fileRSS = fopen("library/rss/favourites.rss", "r");
+   if ($fileRSS)
+   {
+      printf("<span class=\"updateTime\">from <a href=\"http://blo.gs\" title=\"Blo.gs, a blogroll service\">blo.gs</a>, updated %s</span>\n", DateDiff(time() - filemtime("library/rss/favourites.rss")));
+      while (!feof($fileRSS))
+         $sRSS .= fgets($fileRSS, 4096);
+      if ($sRSS != "")
+      {
+         $clsRSS = new RSS($sRSS);
+         $allItems = $clsRSS->getAllItems();
+         for ($ii=0;$ii<count($allItems);$ii++)
+            printf("                        <li><a href=\"%s\" title=\"%s last update - %s\">%s</a><br /><span class=\"updateTime\">updated %s</span></li>\n", $allItems[$ii]["LINK"], $allItems[$ii]["TITLE"], $allItems[$ii]["PUBDATE"], $allItems[$ii]["TITLE"], DateDiff(time() - strtotime($allItems[$ii]["PUBDATE"])));
+      }
+   }*/
+   include("favourites.html");
+?>
+            </li>
+            <li><br /></li>
+<?
+   if (isset($variables["index"]))
+   {
+      $oTopLevelNodes = SelectNodeTypeTopLevelNodes($oConn, $category);
+      $sNodes = "(";
+      $ii=1;
+      $aTopLevelNodes = Array();
+      $iNumRows = mysql_num_rows($oTopLevelNodes);
+      if (mysql_num_rows($oTopLevelNodes) > 0)
+         while ($oTopLevelNode = mysql_fetch_array($oTopLevelNodes))
+         {
+            if ($ii++ < $iNumRows)
+               $sNodes = $sNodes . $oTopLevelNode["nodeID"] . ", ";
+            else
+               $sNodes = $sNodes . $oTopLevelNode["nodeID"];
+            $aTopLevelNodes[$oTopLevelNode["nodeID"]] = $oTopLevelNode["nodeTitle"];
+         }
+      $sNodes = $sNodes . ")";
+      if ($sNodes != "()")
+      {
+         $oUpdateTopLevelThreads = SelectUpdatedThreads($oConn, $sNodes, $variables["dateLastHere"]);
+         if (mysql_num_rows($oUpdateTopLevelThreads) > 0)
+         {
+            echo("            <li>\n               <h5>updated threads</h5>\n               <ul>\n");
+            while ($oUpdateTopLevelThread = mysql_fetch_array($oUpdateTopLevelThreads))
+               printf("                  <li><a href=\"viewnode.php?op=nid=%s\">%s (%s)</a></li>\n", $oUpdateTopLevelThread["ThreadID"], $aTopLevelNodes[$oUpdateTopLevelThread["ThreadID"]], $oUpdateTopLevelThread["new"]);
+            echo("               <ul>\n            </li>\n");
+         }
+      }
+   }
+   Close($oConn);
+
+?>
+            <li><br /></li>
+            <li>
+               <div class="meritBadge"><a href="http://www.scouts.com.au" title="Merit Badges are for Boy Scouts"><h5>Merit Badges</h5><span>are for Boy Scouts</span></a></div>
+               <div class="meritBadge"><a href="http://avocadia.net/journal.asf" title="Avocadia Syndication Format"><h5>ASF</h5><span>10.0</span></a></div>
+               <div class="meritBadge"><a href="http://www.dellah.com/orient/2003/07/17/do_not_feed_the_troll.shtml" title="Dave Winer Mentions Left until Paul delists me."><h5>DWML</h5><span>2</span></a></div>
+            </li>
+            <li><img src="/library/images/26avo2.jpg" title="Avocado theft is a crime" /><br /><cite>Dave Gatley for The New York Times</cite></li>
+         </ul>
+      </div>
+      <div id="pageBannerRight">&nbsp;
+         <h4 class="ahem">site links</h4>
+      </div>
+      <div id="pageFooter"><span id="empireDate"></span>&nbsp;</div>
+   </body>
+</html>

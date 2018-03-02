@@ -1,0 +1,10 @@
+<?
+   // Database Credentials
+   
+   $sServer = "";
+   $sUsername = "";
+   $sPassword = "";
+   $sDatabase = "";
+   $domain = "";
+   $bLive = true;
+?>

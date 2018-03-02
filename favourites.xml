@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<rss version="0.93">
+<channel>
+ <title>blo.gs favorites for avocado</title>
+ <link>http://blo.gs/</link>
+ <description>This lists the favorite weblogs of avocado and when they've last changed.</description>
+ <docs>http://discuss.weblogs.com/changesRss</docs>
+ <ownerName>blo.gs</ownerName>
+ <managingEditor>webmaster@blo.gs</managingEditor>
+ <webMaster>webmaster@blo.gs</webMaster>
+ <lastBuildDate>Sat, 26 Apr 2003 21:51:03 +1000</lastBuildDate>
+<item>
+ <title>Scripting News</title>
+ <pubDate>Sat, 26 Apr 2003 20:26:12 +1000</pubDate>
+ <link>http://www.scripting.com/</link>
+</item>
+<item>
+ <title>Samizdata.net</title>
+ <pubDate>Sat, 26 Apr 2003 19:09:02 +1000</pubDate>
+ <link>http://www.samizdata.net/blog/</link>
+</item>
+<item>
+ <title>Boing Boing Blog</title>
+ <pubDate>Sat, 26 Apr 2003 18:29:54 +1000</pubDate>
+ <link>http://boingboing.net/</link>
+</item>
+<item>
+ <title>Jonathon Delacour</title>
+ <pubDate>Sat, 26 Apr 2003 13:36:27 +1000</pubDate>
+ <link>http://weblog.delacour.net/</link>
+</item>
+<item>
+ <title>Simon Willison's Weblog</title>
+ <pubDate>Sat, 26 Apr 2003 07:41:46 +1000</pubDate>
+ <link>http://simon.incutio.com/</link>
+</item>
+<item>
+ <title>Aquarionics</title>
+ <pubDate>Sat, 26 Apr 2003 07:19:00 +1000</pubDate>
+ <link>http://www.aquarionics.com/</link>
+</item>
+<item>
+ <title>From The Orient</title>
+ <pubDate>Sat, 26 Apr 2003 00:12:53 +1000</pubDate>
+ <link>http://www.dellah.com/orient/</link>
+</item>
+<item>
+ <title>nick boalch : log</title>
+ <pubDate>Fri, 25 Apr 2003 19:35:38 +1000</pubDate>
+ <link>http://www.frejol.org/</link>
+</item>
+<item>
+ <title>as days pass by</title>
+ <pubDate>Fri, 25 Apr 2003 15:35:40 +1000</pubDate>
+ <link>http://www.kryogenix.org/days/</link>
+</item>
+<item>
+ <title>dive into mark</title>
+ <pubDate>Fri, 25 Apr 2003 13:35:20 +1000</pubDate>
+ <link>http://diveintomark.org/</link>
+</item>
+<item>
+ <title>Ongoing</title>
+ <pubDate>Mon, 14 Apr 2003 10:52:32 +1000</pubDate>
+ <link>http://tbray.org/ongoing/</link>
+</item>
+<item>
+ <title>Games * Design * Art * Culture</title>
+ <pubDate>Thu, 03 Apr 2003 01:06:12 +1000</pubDate>
+ <link>http://costik.com/weblog/</link>
+</item>
+<item>
+ <title>Jeffrey Zeldman Presents</title>
+ <pubDate>Thu, 27 Mar 2003 00:29:13 +1100</pubDate>
+ <link>http://www.zeldman.com/coming.html</link>
+</item>
+<item>
+ <title>Lawrence Lessig</title>
+ <pubDate>Sat, 22 Mar 2003 06:30:23 +1100</pubDate>
+ <link>http://cyberlaw.stanford.edu/lessig/blog/</link>
+</item>
+</channel>
+</rss>

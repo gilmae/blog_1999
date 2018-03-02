@@ -1,0 +1,130 @@
+<?
+   if (!$oConn = Connect())
+   {
+      die("Sorry, someone fucked up. Probably me.");
+   }
+?>
+      <hr class="ahem" />
+      </div>
+      <div id="side">
+         <h3 class="ahem">Links and Other Things</h3>
+         <ul>
+            <li>
+               <h4><label for="term" accesskey="4">site search</label></h4>
+               <form method="post" action="search.php">
+                  <div id="searchConsole">
+                     <input type="text" id="term" name="term"  />&nbsp;<input type="submit" value="search" />
+                  </div>
+               </form>
+            </li>
+            <li>
+               <h4>stuff i do</h4>
+               <ul>
+                  <li><a href="index.php" title="Weblog">Journal</a></li>
+                  <li><a href="index.php?op=category=tyranny" title="Tyranny of the Minority">Tyranny of the Minority</a></li>
+                  <li><a href="index.php?op=category=nanowrimo" title="NaNoWriMo">NaNoWriMo</a></li>
+               </ul>
+            </li>
+            <li><br /></li>
+<?
+   if (isset($oCategoryRS) && mysql_num_rows($oCategoryRS) > 0)
+   {
+      echo("            <li>\n");
+      echo("               <h4>topics</h4>\n");
+      mysql_data_seek($oCategoryRS, 0);
+      if (mysql_num_rows($oCategoryRS) > 0)
+      {
+         echo("               <ul>\n");
+         while ($oCategoryRec = mysql_fetch_array($oCategoryRS))
+            printf("                  <li><a href=\"branch.php?op=categoryID=%s\" title=\"Nodes about %s\">%s</a></li>\n", $oCategoryRec["CategoryID"], $oCategoryRec["Category"], $oCategoryRec["Category"]);
+         echo("               </ul>\n");
+      }
+      echo("            </li>\n");
+      echo("            <li><br /></li>\n");
+   }
+?>
+            <li>
+               <h4>stuff i read</h4>
+               <ul>
+                  <li>
+                     <h5>other weblogs</h5>
+                     <ul>
+<?
+   function DateDiff($dDate)
+   {
+      $arrPeriods = Array(Array("week",604800), Array("day",86400), Array("hour",3600), Array("minute",60), Array("second",1));
+      $arrDateDiffs = Array();
+      
+      for ($ii=0;$ii<count($arrPeriods);$ii++)
+      {
+         $arrDateDiffs[$ii] = floor($dDate / $arrPeriods[$ii][1]);
+         $dDate = $dDate % $arrPeriods[$ii][1];
+      }
+
+      for ($ii=0;$ii<count($arrPeriods);$ii++)
+         $sDateDiff .= ($arrDateDiffs[$ii]>0?$arrDateDiffs[$ii] . " " . $arrPeriods[$ii][0] . ($arrDateDiffs[$ii]>1?"s ":" "):"");
+      return $sDateDiff;
+   }
+
+   $fileRSS = fopen("library/rss/favourites.rss", "r");
+   if ($fileRSS)
+   {
+      while (!feof($fileRSS))
+         $sRSS .= fgets($fileRSS, 4096);
+      if ($sRSS != "")
+      {
+         $clsRSS = new RSS($sRSS);
+         $allItems = $clsRSS->getAllItems();
+         for ($ii=0;$ii<count($allItems);$ii++)
+            printf("                        <li>%s<a href=\"%s\" title=\"%s: updated %s\">%s</a><br />update %s</li>\n", "*" . $allItems[$i]["PUBDATE"] . "*", $allItems[$ii]["LINK"], $allItems[$ii]["TITLE"], DateDiff(time() + 57600 - strtotime($allItems[$i]["PUBDATE"])), $allItems[$ii]["TITLE"], DateDiff(time() + 57600 - strtotime($allItems[$i]["PUBDATE"])), DateDiff(time() + 57600 - strtotime($allItems[$i]["PUBDATE"])));
+      }
+   }
+?>
+                        <li><a href="http://www.kozaru.net" title="Preceptor's weblog and bulletin board">Kozaru</a></li>
+                        <li><a href="http://www.viscerate.com" title="Tany and Jen's weblogs">Viscerate</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li><br /></li>
+<?
+   if (isset($variables["index"]))
+   {
+      $oTopLevelNodes = SelectNodeTypeTopLevelNodes($oConn, $category);
+      $sNodes = "(";
+      $ii=1;
+      $aTopLevelNodes = Array();
+      $iNumRows = mysql_num_rows($oTopLevelNodes);
+      if (mysql_num_rows($oTopLevelNodes) > 0)
+         while ($oTopLevelNode = mysql_fetch_array($oTopLevelNodes))
+         {
+            if ($ii++ < $iNumRows)
+               $sNodes = $sNodes . $oTopLevelNode["nodeID"] . ", ";
+            else
+               $sNodes = $sNodes . $oTopLevelNode["nodeID"];
+            $aTopLevelNodes[$oTopLevelNode["nodeID"]] = $oTopLevelNode["nodeTitle"];
+         }
+      $sNodes = $sNodes . ")";
+      if ($sNodes != "()")
+      {
+         $oUpdateTopLevelThreads = SelectUpdatedThreads($oConn, $sNodes, $variables["dateLastHere"]);
+         if (mysql_num_rows($oUpdateTopLevelThreads) > 0)
+         {
+            echo("            <li>\n               <h5>updated threads</h5>\n               <ul>\n");
+            while ($oUpdateTopLevelThread = mysql_fetch_array($oUpdateTopLevelThreads))
+               printf("                  <li><a href=\"viewnode.php?op=nid=%s\">%s (%s)</a></li>\n", $oUpdateTopLevelThread["ThreadID"], $aTopLevelNodes[$oUpdateTopLevelThread["ThreadID"]], $oUpdateTopLevelThread["new"]);
+            echo("               <ul>\n            </li>\n");
+         }
+      }
+   }
+   Close($oConn);
+
+?>
+         </ul>
+      </div>
+      <div id="pageBannerRight">&nbsp;
+         <h4 class="ahem">site links</h4>
+      </div>
+      <div id="pageFooter"><span id="empireDate"><? echo(GetEmpireDate()) ?>&nbsp;&nbsp;&nbsp;</span><br/></div>
+   </body>
+</html>

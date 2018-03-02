@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns="http://purl.org/rss/1.0/">
+  <channel rdf:about="http://avocadia.net">
+    <title>Avocadia</title>
+    <link>http://avocadia.net/</link>
+    <description>Expect the expected</description>
+    <dc:language>en-au</dc:language>
+    <dc:creator>gilmae</dc:creator>
+    <dc:date>2012-07-22T19:05:42+10</dc:date>
+    <admin:generatorAgent rdf:resource="http://avocadia.net" />
+    <admin:errorReportsTo rdf:resource="mailto:gilmaevski@mail.ru"/>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15117" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15111" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15110" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15104" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15091" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15087" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15066" />
+        <rdf:li rdf:resource="http://avocadia.net/viewnode.php?op=nid=15054" />
+      </rdf:Seq>
+    </items>
+  </channel>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15117">
+      <title>I just don't care if they lose</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>Today, <a href="http://www.smh.com.au/news/world-cup-2006/ricardo-saves-portugal/2006/07/02/1151778796860.html">we are all trying very hard to care</a>.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15117</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-07-02T20:02:45+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15111">
+      <title>Signs you are becoming your parents</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>tWM, after kicking her foot on the new tv unit: &quot;&lt;cry&gt; &lt;cry&gt; It hurts!&quot;</p><p>me, after spotting tears falling on the new couch: &quot;No! No crying on the couch, you're going to stain it.&quot;</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15111</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-29T19:35:31+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15110">
+      <title>The Blog of Time</title>
+      <description></description>
+      <content:encoded><![CDATA[<blockquote><p>Robert Jordan is apparently maintaining a blog at dragonmount. Dunno, cos my puter is taking hours to load anything. My point is though, if he is too sick to write the last  fucking book, why the hell is he wasting time writing a blog???</p></blockquote><cite>D, on ICQ</cite><p><a href="http://www.dragonmount.com/RobertJordan/" title="Robert Jordan's blog">Robert Jordan's Not Book Twelve</a>. Hell hath no fury like an impatient ex-fan.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15110</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-28T08:30:03+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15104">
+      <title>Dive Into Soccer</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>I'm told we were robbed. I didn't stay up because, well, soccer is fucking boring. Someone at work recorded it though and we watched the penalty on his notebook. I am told we were robbed but it looked like every other soccer penalty to me.</p><p>Update:</p><blockquote><p>Italy's method is rooted in pessimism. Ask an Italian whether the glass is half-full or half-empty and he is liable to reply that it is poisoned.</p><p>Ask an Australian and he will ask if it is a free bar.</p></blockquote><cite>The Times, allegedly</cite><p>On the other hand, losing was worth it to laugh that much.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15104</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-27T14:19:08+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15091">
+      <title>Someone needs to be fired over this</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>Man, I'm so pissed off about the World Cup. I mean, what the hell? We're not going to get to beat England until the damn final! I can't wait that long!!</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15091</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-23T15:49:40+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15087">
+      <title>In their own words</title>
+      <description></description>
+      <content:encoded><![CDATA[<blockquote><p>As the Sex Discrimination Commissioner, she has been a pragmatic feminist, treading the line most women live, between self-respect and love of men, and is acutely aware of the issues of real concern to women and their families.</p></blockquote><cite><a href="http://www.smh.com.au/news/opinion/bad-form-to-humiliate-ones-own/2006/06/21/1150845241000.html">Miranda Devine</a></cite><p>What an illuminating line, that remark conflating a woman's self-respect with lesbianism. Should I be surprised though? It isn't as if the social conservatives have never before equated feminine submissiveness with hetrosexuality before.</p><p>So I assume Miranda herself is either a self-mutilator or licks carpet.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15087</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-22T12:03:41+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15066">
+      <title>Back to the Future</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>As I mentioned, I watched the Australia v Japan game on Monday night/Tuesday morning. I have a sneaking suspicion it is only the third game of soccer I have watched from start to finish. I seem to remember watching a couple of Premier league games quite a few years ago and coming away more determined than ever to watch a lot of rugby union. I learned two things while watching the game, two things that stayed with me even during the final eight minutes.</p><p>Firstly, soccer really is a dull fucking game. If league is basically rugby with all the tactics removed, then soccer is basically rugby with all the sport removed. In a shocking development, I am reminded of that Simpsons episode where Springfield plays host to a soccer game. Kent Brockman is calling the game as it happens, the furrin commentator calls the same game, but with more volume and with orders of magnitude more (misplaced) adrenalin. This is it? This is the beautiful game? Even allowing for it being a first round game at least one team that can safely be considered a dark horse, it was dull.</p><p>Secondly, sporting nationalism is insufficient reason to repeat trying to perform one's work duties on only four hour's sleep.</p><p>I managed to catch up with three of my friends today. They are all pratyekabuddhas, having each escaped $company long ago. Last time I had seen Kate she had failed to mention beforehand that she was pregnant. She just turned up, seven or eight months into the process as if it was a fine joke to play on us. Today she brought her five-month old boy, Alfie, along with her.</p><p><a href="http://www.flickr.com/photos/gilmae/167636771/"><img src="http://static.flickr.com/51/167636771_e728609540_m.jpg" alt="Kate laughs while Dan plays with Alfie" /></a><br />Kate</p><p><a href="http://www.flickr.com/photos/gilmae/167636786/"><img src="http://static.flickr.com/57/167636786_1f264c4271_m.jpg" alt="Dan plays with Kate's son Alfie" /></a><br />Dan and Alfie</p><p>I dandled that kid on my knee for a bit and it confirmed yet another long-held assumption - I really don't want another.</p><p>At 14:30 I looked at my watch, well aware that I really should get back to the office. Couldn't do it. Simply couldn't face it. I didn't make it back until just after 17:00. As much fun as I had with my friends, my extreme reluctance to go back - unprecedented even at the height of my complaints last year, I was always able to make it to the office - is making me face up to my future at that company. And, in all truth, my cowardice over the last two years that has prevented me from facing up to it already.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15066</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-15T21:50:58+10</dc:date>
+   </item>
+   <item rdf:about="http://avocadia.net/viewnode.php?op=nid=15054">
+      <title>So far today</title>
+      <description></description>
+      <content:encoded><![CDATA[<p>You've stayed up to early hours in the morning to watch Australia play Japan. You've then gone to bed and not fallen to sleep for another half hour because you're just so relieved that a very small percentage of the world is Japanese today. You crawl out of bed after four hours of sleep, start having a shower and then realise your forgot to turn the alarm off so you jump out into the freezing cold air and dash to the bedroom to turn the alarm off because what the world does not need is a grumpy D. You then shiver half to death while shaving, stumble into the bedroom and kick your toe because some damn fool put a bed in there while you weren't looking and you pull on your clothes which are very conveniently freezing cold as well because it wouldn't do to be warm, it would only be teasing for when you walked out the front door. When you finally are ready to leave, you cannot find your gloves. You are sure you saw them on the floor two days before, which means that they could be anywhere from inside your bag to inside the rabbit. They are, however, mixed up in your pajamas because where else would they be, fool! Walk out the door, and apply the warm water to your face to defrost your snap frozen eyeballs and walk to the station. Get on the train and stand all the way into the city because apparantly every car in Ingleburn wouldn't start this morning due to the excessive cold. Change trains and be the last person through the doors before the train is full and then be followed by half a dozen more people. Get to work. Refuse to read email because it is just too scary and kick off a file import that has never been fully automated because the first guy was too busy and you are too busy and the download script starts complainign about there being not enough space on the file share. Suppress the weeping and start deleteing things off the file share, hopefull faster than the script can download things to the fileshare. Anything in a temp directory doesn't even get examined for importance - if it is important, why is it in a directory called 'temp'?. Clean up enough space for the script to download and work with files, relax. Script fails. The drive teh database is on is full.</p>]]></content:encoded>
+      <link>http://avocadia.net/viewnode.php?op=nid=15054</link>
+      <dc:subject>Journal</dc:subject>
+      <dc:creator>gilmae</dc:creator>
+      <dc:date>2006-06-13T08:56:11+10</dc:date>
+   </item>
+</rdf:RDF>
