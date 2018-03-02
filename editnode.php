@@ -1,24 +1,24 @@
 <?
    include_once("gf.inc");
    $pageTitle = "Edit Node";
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
    if (!isset($variables["nid"]))
-      $variables["nid"] = isset($HTTP_POST_VARS["nid"])?$HTTP_POST_VARS["nid"]:-1;
+      $variables["nid"] = isset($_POST["nid"])?$_POST["nid"]:-1;
    if (!isset($variables["tid"]))
-      $variables["tid"] = isset($HTTP_POST_VARS["tid"])?$HTTP_POST_VARS["tid"]:-1;
-   $variables["nodeCategory"] = isset($HTTP_POST_VARS["nodeCategory"])?$HTTP_POST_VARS["nodeCategory"]:Array();
+      $variables["tid"] = isset($_POST["tid"])?$_POST["tid"]:-1;
+   $variables["nodeCategory"] = isset($_POST["nodeCategory"])?$_POST["nodeCategory"]:Array();
    if (!$oConn = Connect())
    {
       die("Sorry, someone fucked up. Probably me.");
    }
    if ($variables["submit"] == "edit")
    {
-      $variables["nodeTitle"] = $HTTP_POST_VARS["nodeTitle"];
-      $variables["nodeBody"] = $HTTP_POST_VARS["nodeBody"];
-      $variables["nodePrecise"] = $HTTP_POST_VARS["nodePrecise"];
-      $variables["nodeType"] = $HTTP_POST_VARS["nodeType"];
-      $variables["public"] = isset($HTTP_POST_VARS["public"])?1:0;
-      $variables["uid"] = $HTTP_POST_VARS["uid"];
+      $variables["nodeTitle"] = $_POST["nodeTitle"];
+      $variables["nodeBody"] = $_POST["nodeBody"];
+      $variables["nodePrecise"] = $_POST["nodePrecise"];
+      $variables["nodeType"] = $_POST["nodeType"];
+      $variables["public"] = isset($_POST["public"])?1:0;
+      $variables["uid"] = $_POST["uid"];
 
       $oRS = SelectUser($oConn, $variables["uid"]);
       if (!$oRS)
@@ -37,7 +37,7 @@
          include("footer.php");
       }
       $oRec = mysqli_fetch_array($oRS);
-      $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
+      $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
       if ($variables["pwd"] != $oRec["password"])
       {
          include("header.php");
@@ -92,12 +92,12 @@
       }
       else
       {
-         $variables["nodeTitle"] = stripslashes($HTTP_POST_VARS["nodeTitle"]);
-         $variables["nodeBody"] = stripslashes($HTTP_POST_VARS["nodeBody"]);
-         $variables["nodePrecise"] = stripslashes($HTTP_POST_VARS["nodePrecise"]);
-         $variables["nodeType"] = stripslashes($HTTP_POST_VARS["nodeType"]);
-         $variables["public"] = isset($HTTP_POST_VARS["public"])?1:0;
-         $variables["uid"] = stripslashes($HTTP_POST_VARS["uid"]);
+         $variables["nodeTitle"] = stripslashes($_POST["nodeTitle"]);
+         $variables["nodeBody"] = stripslashes($_POST["nodeBody"]);
+         $variables["nodePrecise"] = stripslashes($_POST["nodePrecise"]);
+         $variables["nodeType"] = stripslashes($_POST["nodeType"]);
+         $variables["public"] = isset($_POST["public"])?1:0;
+         $variables["uid"] = stripslashes($_POST["uid"]);
       }
       if ($variables["submit"] == "preview")
       {

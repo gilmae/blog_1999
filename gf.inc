@@ -4,7 +4,7 @@
    include("IXR_Library.inc.php");
    include("msf.inc");
    $variables = Array();
-   $op = isset($HTTP_GET_VARS["op"])?$HTTP_GET_VARS["op"]:"";
+   $op = isset($_GET["op"])?$_GET["op"]:"";
    if ($op != "")
    {
       $op = explode(";", $op);
