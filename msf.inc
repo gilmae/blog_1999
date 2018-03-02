@@ -127,7 +127,7 @@
 
    function GetNodeTypes($xConn)
    {
-      return mysqli_query("SELECT * FROM nodeTypes", $xConn);
+      return mysqli_query($xConn,"SELECT * FROM nodeTypes");
    }
    
    function IncrementChildCount($xConn, $xNodeID)
