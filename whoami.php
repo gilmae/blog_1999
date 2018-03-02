@@ -11,9 +11,9 @@
    }
 
    $theEngine = new UserEngine($theConn);
-   if (isset($HTTP_COOKIE_VARS["counter"]))
+   if (isset($_COOKIE["counter"]))
    {
-      $theUser = $theEngine->GetUser($HTTP_COOKIE_VARS["counter"]);
+      $theUser = $theEngine->GetUser($_COOKIE["counter"]);
       
       echo("<form method=\"post\">\n");
       echo("   <input type=\"hidden\" name=\"userId\" value=\"" . $theUser->id() . "\" />\n");
@@ -27,12 +27,12 @@
    {
       if (strtoupper($_SERVER["REQUEST_METHOD"]) == "POST")
       {
-	 if ($HTTP_POST_VARS["submit"] == "search")
-	    if ($HTTP_POST_VARS["email"] != "")
-	       Search($HTTP_POST_VARS["email"]);
+	 if ($_POST["submit"] == "search")
+	    if ($_POST["email"] != "")
+	       Search($_POST["email"]);
 	    else
 	       echo("<p class=\"error\">You can only claim a identity with a non-blank email address</p>\n");
-         elseif ($HTTP_POST_VARS["submit"] == "merge and claim")
+         elseif ($_POST["submit"] == "merge and claim")
 	    Claim();
       }
 
@@ -77,11 +77,11 @@
 
    function Claim()
    {
-      global $HTTP_POST_VARS;
+      global $_POST;
       global $theEngine;
 
       $theUserIds = array();
-      foreach ($HTTP_POST_VARS as $key=>$value)
+      foreach ($_POST as $key=>$value)
       {
          $theMatches = array();
          if (preg_match("/IKnowMe(\d+)/", $key, $theMatches) && $value == "on")

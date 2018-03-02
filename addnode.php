@@ -1,21 +1,21 @@
 <?
    include("gf.inc");
    include("weblogscom.inc");
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
    $pageTitle = "Add Node";
    if ($variables["submit"] == "")
       $variables["public"] = 1;
    if ($variables["submit"] == "post")
    {
-      $variables["nodeTitle"] = isset($HTTP_POST_VARS["nodeTitle"])?$HTTP_POST_VARS["nodeTitle"]:"";
-      $variables["nodeBody"] = isset($HTTP_POST_VARS["nodeBody"])?$HTTP_POST_VARS["nodeBody"]:"";
-      $variables["nodePrecise"] = isset($HTTP_POST_VARS["nodePrecise"])?$HTTP_POST_VARS["nodePrecise"]:"";
-      $variables["nodeType"]= isset($HTTP_POST_VARS["nodeType"])?$HTTP_POST_VARS["nodeType"]:"";
-      $variables["nodeCategory"] = isset($HTTP_POST_VARS["nodeCategory"])?$HTTP_POST_VARS["nodeCategory"]:Array();
-      $variables["public"] = isset($HTTP_POST_VARS["public"])?1:0;
-      $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
-      $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
-      $variables["pid"] = isset($HTTP_POST_VARS["pid"])?$HTTP_POST_VARS["pid"]:-1;
+      $variables["nodeTitle"] = isset($_POST["nodeTitle"])?$_POST["nodeTitle"]:"";
+      $variables["nodeBody"] = isset($_POST["nodeBody"])?$_POST["nodeBody"]:"";
+      $variables["nodePrecise"] = isset($_POST["nodePrecise"])?$_POST["nodePrecise"]:"";
+      $variables["nodeType"]= isset($_POST["nodeType"])?$_POST["nodeType"]:"";
+      $variables["nodeCategory"] = isset($_POST["nodeCategory"])?$_POST["nodeCategory"]:Array();
+      $variables["public"] = isset($_POST["public"])?1:0;
+      $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
+      $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
+      $variables["pid"] = isset($_POST["pid"])?$_POST["pid"]:-1;
       if (!$oConn = Connect())
          die("Sorry, someone fucked up. Probably me.");
       $variables["counter"] = VerifyAdmin($variables["uid"], $variables["pwd"]);
@@ -104,14 +104,14 @@
    else if ($variables["submit"] == "preview")
    {
       include("header.php");
-      $variables["nodeTitle"] = isset($HTTP_POST_VARS["nodeTitle"])?$HTTP_POST_VARS["nodeTitle"]:"";
-      $variables["nodeBody"] = isset($HTTP_POST_VARS["nodeBody"])?$HTTP_POST_VARS["nodeBody"]:"";
-      $variables["nodePrecise"] = isset($HTTP_POST_VARS["nodePrecise"])?$HTTP_POST_VARS["nodePrecise"]:"";
-      $variables["nodeType"]= isset($HTTP_POST_VARS["nodeType"])?$HTTP_POST_VARS["nodeType"]:"";
-      $variables["nodeCategory"] = isset($HTTP_POST_VARS["nodeCategory"])?$HTTP_POST_VARS["nodeCategory"]:Array();
-      $variables["public"] = isset($HTTP_POST_VARS["public"])?1:0;
-      $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
-      $variables["pid"] = isset($HTTP_POST_VARS["pid"])?$HTTP_POST_VARS["pid"]:-1;
+      $variables["nodeTitle"] = isset($_POST["nodeTitle"])?$_POST["nodeTitle"]:"";
+      $variables["nodeBody"] = isset($_POST["nodeBody"])?$_POST["nodeBody"]:"";
+      $variables["nodePrecise"] = isset($_POST["nodePrecise"])?$_POST["nodePrecise"]:"";
+      $variables["nodeType"]= isset($_POST["nodeType"])?$_POST["nodeType"]:"";
+      $variables["nodeCategory"] = isset($_POST["nodeCategory"])?$_POST["nodeCategory"]:Array();
+      $variables["public"] = isset($_POST["public"])?1:0;
+      $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
+      $variables["pid"] = isset($_POST["pid"])?$_POST["pid"]:-1;
       $variables["nodeBody"] = stripslashes($variables["nodeBody"]);
       $variables["nodePrecise"] = stripslashes($variables["nodePrecise"]);
       $variables["nodeTitle"] = stripslashes($variables["nodeTitle"]);
@@ -123,7 +123,7 @@
    {
       include("header.php");
       $variables["pid"] = isset($variables["pid"])?$variables["pid"]:-1;
-      $variables["uid"] = isset($HTTP_COOKIE_VARS["name"])?$HTTP_COOKIE_VARS["name"]:"";
+      $variables["uid"] = isset($_COOKIE["name"])?$_COOKIE["name"]:"";
       $variables["nodeTitle"] = "";
       $variables["nodeBody"] = "";
       $variables["nodePrecise"] = "";

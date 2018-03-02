@@ -2,7 +2,7 @@
    include_once("gf.inc");
    $pageTitle = "Search Nodes";
    include("header.php");
-   $term = isset($HTTP_POST_VARS["term"])?$HTTP_POST_VARS["term"]:"";
+   $term = isset($_POST["term"])?$_POST["term"]:"";
    $whereClause = "";
    if (!$oConn = Connect())
    {

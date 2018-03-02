@@ -5,16 +5,16 @@
       die("Sorry, someone fucked up. Probably me.");
    }
    $pageTitle = "Add Comment";
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
    if ($variables["submit"] == "post")
    {
-      $variables["name"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:$name;
-      $variables["email"] = isset($HTTP_POST_VARS["email"])?$HTTP_POST_VARS["email"]:$email;
-      $variables["url"] = isset($HTTP_POST_VARS["url"])?$HTTP_POST_VARS["url"]:$url;
+      $variables["name"] = isset($_POST["uid"])?$_POST["uid"]:$name;
+      $variables["email"] = isset($_POST["email"])?$_POST["email"]:$email;
+      $variables["url"] = isset($_POST["url"])?$_POST["url"]:$url;
       $variables["url"] = preg_replace("/^(http:\/\/|ftp:\/\/|mailto:)/", "", $variables["url"]);
-      $variables["nodeTitle"] = isset($HTTP_POST_VARS["nodeTitle"])?$HTTP_POST_VARS["nodeTitle"]:"";
-      $variables["pid"] = isset($HTTP_POST_VARS["pid"])?$HTTP_POST_VARS["pid"]:-1;
-      $variables["nodeBody"] = isset($HTTP_POST_VARS["nodeBody"])?$HTTP_POST_VARS["nodeBody"]:"";
+      $variables["nodeTitle"] = isset($_POST["nodeTitle"])?$_POST["nodeTitle"]:"";
+      $variables["pid"] = isset($_POST["pid"])?$_POST["pid"]:-1;
+      $variables["nodeBody"] = isset($_POST["nodeBody"])?$_POST["nodeBody"]:"";
       $oRS = SelectNode($oConn, $variables["pid"]);
       if ($oRec = mysqli_fetch_array($oRS)) {
          if ($oRec["datetime"] < strtotime("-3 months")) {
@@ -36,7 +36,7 @@
              UpdateUser($oConn, $variables["name"], $variables["name"], $variables["email"], $variables["url"], 0, $variables["counter"]);
           }
       }
-      if ($HTTP_POST_VARS["remember"] = "on")
+      if ($_POST["remember"] = "on")
       {
          setcookie("counter", $variables["counter"], time() + 7776000);
          setcookie("name", $variables["name"], time() + 7776000);
@@ -85,19 +85,19 @@
    }
    else if ($variables["submit"] == "preview")
    {
-         $variables["name"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:$name;
-         $variables["email"] = isset($HTTP_POST_VARS["email"])?$HTTP_POST_VARS["email"]:$email;
-         $variables["url"] = isset($HTTP_POST_VARS["url"])?$HTTP_POST_VARS["url"]:$url;
+         $variables["name"] = isset($_POST["uid"])?$_POST["uid"]:$name;
+         $variables["email"] = isset($_POST["email"])?$_POST["email"]:$email;
+         $variables["url"] = isset($_POST["url"])?$_POST["url"]:$url;
          $variables["url"] = preg_replace("/^(http:\/\/|ftp:\/\/|mailto:)/", "", $variables["url"]);
-         $variables["nodeTitle"] = isset($HTTP_POST_VARS["nodeTitle"])?$HTTP_POST_VARS["nodeTitle"]:"";
-         $variables["pid"] = isset($HTTP_POST_VARS["pid"])?$HTTP_POST_VARS["pid"]:-1;
-         $variables["nodeBody"] = isset($HTTP_POST_VARS["nodeBody"])?$HTTP_POST_VARS["nodeBody"]:"";
+         $variables["nodeTitle"] = isset($_POST["nodeTitle"])?$_POST["nodeTitle"]:"";
+         $variables["pid"] = isset($_POST["pid"])?$_POST["pid"]:-1;
+         $variables["nodeBody"] = isset($_POST["nodeBody"])?$_POST["nodeBody"]:"";
    }
    else
    {
-      $variables["name"] = isset($HTTP_COOKIE_VARS["name"])?$HTTP_COOKIE_VARS["name"]:"anonyomus";
-      $variables["email"] = isset($HTTP_COOKIE_VARS["email"])?$HTTP_COOKIE_VARS["email"]:"";
-      $variables["url"] = isset($HTTP_COOKIE_VARS["url"])?$HTTP_COOKIE_VARS["url"]:"";
+      $variables["name"] = isset($_COOKIE["name"])?$_COOKIE["name"]:"anonyomus";
+      $variables["email"] = isset($_COOKIE["email"])?$_COOKIE["email"]:"";
+      $variables["url"] = isset($_COOKIE["url"])?$_COOKIE["url"]:"";
       $variables["url"] = preg_replace("/^(http:\/\/|ftp:\/\/|mailto:)/", "", $variables["url"]);
       $variables["pid"] = isset($variables["nid"])?$variables["nid"]:-1;
    }

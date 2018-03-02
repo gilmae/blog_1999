@@ -15,11 +15,11 @@
          $variables[$line[0]] = $line[1];
       }
    }
-   if (isset($HTTP_COOKIE_VARS["dateLastHere"]))
-      $variables["dateLastHere"] = $HTTP_COOKIE_VARS["dateLastHere"];
+   if (isset($_COOKIE["dateLastHere"]))
+      $variables["dateLastHere"] = $_COOKIE["dateLastHere"];
    else
    {
-      $variables["dateLastHere"] = isset($HTTP_COOKIE_VARS["dateLastLogged"])?$HTTP_COOKIE_VARS["dateLastLogged"]:Now2Counter();
+      $variables["dateLastHere"] = isset($_COOKIE["dateLastLogged"])?$_COOKIE["dateLastLogged"]:Now2Counter();
       setcookie("dateLastHere", $variables["dateLastHere"]);
       setcookie("dateLastLogged", Now2Counter(), time() + 7776000);
       $variables["referer"] = isset($HTTP_SERVER_VARS["HTTP_REFERER"])?$HTTP_SERVER_VARS["HTTP_REFERER"]:"";
@@ -32,43 +32,7 @@
       {
          die("Sorry, someone fucked up. Probably me.");
       }
-      /*$offset = $nesting*$xLvl;
-      printf("         <div class=\"node\" id=\"node%s\">\n", $oRecc["nodeID"]);
-      printf("            <div class=\"nodeHead\">\n"); 
-      printf("               <h4>%s</h4>\n", $oRecc["nodeTitle"]);
-      printf("            </div>\n");
-      printf("            <div class=\"nodeBody\">\n");
-      printf("               <p class=\"meta\">%s\n", $xFullDate?Counter2Date($oRecc["datetime"]):Counter2Time($oRecc["datetime"]));
-      if ($oRecc["url"] == "") 
-         printf("               | %s\n", $oRecc["userName"]);
-      else
-         printf("               | <a href=\"redirect.php?op=nid=%s\" title=\"%s\">%s</a>\n", $oRecc["nodeID"], $oRecc["userName"], $oRecc["userName"]);
-      printf("               | <a href=\"viewnode.php?op=nid=%s\"title=\"permanent link to this node\">link</a>\n", $oRecc["nodeID"]);
-      if ($oRecc["Edited"] == "1")
-         printf("               | <a href=\"edits.php?op=nid=%s\"title=\"Editing performed on this node\">Edited</a>\n", $oRecc["nodeID"]);
-      echo("               </p>\n");
-      printf("               %s\n", MLP($oRecc["nodeBody"], $xTerm));
-      $oCats = SelectNodeCategories($oConn, $oRecc["nodeID"]);
-      if (mysqli_num_rows($oCats) > 0)
-      {
-         $catCount = 0;
-         echo("               <p>\n");
-         while ($oCat = mysqli_fetch_array($oCats))
-            printf("                  %s", $oCat["Category"]);
-         echo("               </p>\n"); 
-      }   
-      printf("            </div>\n");
-      if ($xWithFooter == 1)
-      {
-         echo("            <ul>");       
-         if ($oRecc["datetime"] >= strtotime("-3 months"))
-            printf("               <li><a href=\"addcomment.php?op=nid=%s\" title=\"Add a comment to this post\">Make a comment</a></li>\n", $oRecc["nodeID"], $oRecc["nodeID"]);
-         if (($oRecc["childNodes"] > 0) && $xLvl >= $maxLevel)
-            printf("               <li><a href=\"viewnode.php?op=nid=%s\" title=\"View thread\">%s followup%s</a></li>\n", $oRecc["nodeID"], $oRecc["childNodes"], $oRecc["childNodes"] > 0?"s":"");
-         echo("            </ul>");       
-      }   
-      printf("         </div>\n");*/
-      //printf("            <li>\n");
+      
       printf("               <div class=\"node\">\n");
       printf("                  <h3><a href=\"viewnode.php?op=nid=%s\"title=\"permanent link to this node\">%s</a></h3>\n", $oRecc["nodeID"], $oRecc["nodeTitle"]);
       printf("                  <ul class=\"nodeMeta\">\n");
@@ -87,7 +51,7 @@
       printf("                     %s\n", MLP($oRecc["nodeBody"], $xTerm));
       printf("                  </div>\n");
       printf("               </div>\n");
-      //printf("            </li>\n");
+     
       
    }   
 

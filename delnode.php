@@ -5,11 +5,11 @@
    {
       die("Sorry, someone fucked up. Probably me.");
    }
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
-   $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
+   $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
    if ($variables["submit"] == "delete")
    {
-      $variables["nid"] = $HTTP_POST_VARS["nid"];
+      $variables["nid"] = $_POST["nid"];
       $oRS = SelectUser($oConn, $variables["uid"]);
       if (!$oRS)
       {
@@ -27,7 +27,7 @@
          include("footer.php");
       }
       $oRec = mysqli_fetch_array($oRS);
-      $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
+      $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
       if ($variables["pwd"] != $oRec["password"])
       {
          include("header.php");

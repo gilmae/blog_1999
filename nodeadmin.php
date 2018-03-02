@@ -2,7 +2,7 @@
    $pageTitle = "Node Admin";
    include_once("gf.inc");
    include("header.php");
-   //$pid = isset($HTTP_GET_VARS["pid"])?$HTTP_GET_VARS["pid"]:-1;
+   //$pid = isset($_GET["pid"])?$_GET["pid"]:-1;
    if (!isset($variables["pid"]))
       $variables["pid"] = -1;
    if (!isset($variables["page"]))

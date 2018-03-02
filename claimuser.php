@@ -4,7 +4,7 @@
    include("User.php");
 
    $theEngine = new TokenEngine(Connect());
-   if ($theToken = $theEngine->GetTokenByToken($HTTP_GET_VARS["token"]))
+   if ($theToken = $theEngine->GetTokenByToken($_GET["token"]))
    {
       $theUserIds = explode("|", $theToken->data());
 

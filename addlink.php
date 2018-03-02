@@ -1,13 +1,13 @@
 <?
    include("gf.inc");
-   $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
-   $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
-   $variables["linkName"] = isset($HTTP_POST_VARS["linkName"])?$HTTP_POST_VARS["linkName"]:"";
-   $variables["link"] = isset($HTTP_POST_VARS["link"])?$HTTP_POST_VARS["link"]:"";
-   $variables["linkRSS"] = isset($HTTP_POST_VARS["linkRSS"])?$HTTP_POST_VARS["linkRSS"]:"";
-   $variables["linkDescription"] = isset($HTTP_POST_VARS["linkDescription"])?$HTTP_POST_VARS["linkDescription"]:"";
+   $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
+   $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
+   $variables["linkName"] = isset($_POST["linkName"])?$_POST["linkName"]:"";
+   $variables["link"] = isset($_POST["link"])?$_POST["link"]:"";
+   $variables["linkRSS"] = isset($_POST["linkRSS"])?$_POST["linkRSS"]:"";
+   $variables["linkDescription"] = isset($_POST["linkDescription"])?$_POST["linkDescription"]:"";
    if (!isset($variables["submit"]))
-      $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
+      $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
    $pageTitle = "Add Link";
    if ($variables["submit"] == "post")
    {

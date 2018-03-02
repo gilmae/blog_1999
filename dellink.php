@@ -5,12 +5,12 @@
    {
       die("Sorry, someone fucked up. Probably me.");
    }
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
-   $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
-   $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
+   $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
+   $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
    if ($variables["submit"] == "delete")
    {
-      $variables["lid"] = isset($HTTP_POST_VARS["lid"])?$HTTP_POST_VARS["lid"]:"";
+      $variables["lid"] = isset($_POST["lid"])?$_POST["lid"]:"";
       if ($variables["lid"] == "")
       {
          include("header.php");

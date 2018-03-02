@@ -5,12 +5,12 @@
    {
       die("Sorry, someone fucked up. Probably me.");
    }
-   $variables["submit"] = isset($HTTP_POST_VARS["submit"])?$HTTP_POST_VARS["submit"]:"";
-   $variables["uid"] = isset($HTTP_POST_VARS["uid"])?$HTTP_POST_VARS["uid"]:"";
-   $variables["pwd"] = isset($HTTP_POST_VARS["pwd"])?$HTTP_POST_VARS["pwd"]:"";
+   $variables["submit"] = isset($_POST["submit"])?$_POST["submit"]:"";
+   $variables["uid"] = isset($_POST["uid"])?$_POST["uid"]:"";
+   $variables["pwd"] = isset($_POST["pwd"])?$_POST["pwd"]:"";
    if ($variables["submit"] == "edit")
    {
-      $variables["lid"] = isset($HTTP_POST_VARS["lid"])?$HTTP_POST_VARS["lid"]:"";
+      $variables["lid"] = isset($_POST["lid"])?$_POST["lid"]:"";
       if ($variables["lid"] == "")
       {
          include("header.php");
@@ -18,10 +18,10 @@
          die("<h4>Could not find link .</h4>");
          include("footer.php");
       }
-      $variables["linkName"] = isset($HTTP_POST_VARS["linkName"])?$HTTP_POST_VARS["linkName"]:"";
-      $variables["link"] = isset($HTTP_POST_VARS["link"])?$HTTP_POST_VARS["link"]:"";
-      $variables["linkDescription"] = isset($HTTP_POST_VARS["linkDescription"])?$HTTP_POST_VARS["linkDescription"]:"";
-      $variables["linkRSS"] = isset($HTTP_POST_VARS["linkRSS"])?$HTTP_POST_VARS["linkRSS"]:"";
+      $variables["linkName"] = isset($_POST["linkName"])?$_POST["linkName"]:"";
+      $variables["link"] = isset($_POST["link"])?$_POST["link"]:"";
+      $variables["linkDescription"] = isset($_POST["linkDescription"])?$_POST["linkDescription"]:"";
+      $variables["linkRSS"] = isset($_POST["linkRSS"])?$_POST["linkRSS"]:"";
       $oRS = SelectUser($oConn, $variables["uid"]);
       if (!$oRS)
       {
