@@ -1,4 +1,4 @@
-*.sql
+db_snapshots
 core
 dbc.inc
 *.key
